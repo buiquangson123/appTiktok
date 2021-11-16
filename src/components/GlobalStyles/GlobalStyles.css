@@ -1,0 +1,42 @@
+:root {
+  --white-color: #fff;
+  --black-color: #000;
+  --text-color: #333;
+  --orange-color: #ee4d2d;
+  --boder--color: #D3DEDE;
+  --hover--color: #f7f4f4;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+body {
+  width: 100vw;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.grid {
+  width: 100%;
+  display: block;
+  padding: 0;
+}
+
+.grid.wide {
+  width: 1060px;
+  margin: 0 auto;
+}
+
+.iconItem {
+  color: #6a6969;
+  cursor: pointer;
+}
+
