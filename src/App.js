@@ -10,7 +10,7 @@ function App() {
       <div className="grid">
         <Heading />
         <Container />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </GlobalStyles>
   );

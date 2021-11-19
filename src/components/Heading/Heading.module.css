@@ -1,6 +1,10 @@
 .header {
-    border-bottom: 1px solid #D3DEDE;
+    border-bottom: 1px solid var(--boder--color);
     padding: 5px 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
 }
 
 .headerNav {
@@ -15,7 +19,7 @@
 }
 
 .headerSearch {
-    border: 1px solid #D3DEDE;
+    border: 1px solid var(--boder--color);
     border-radius: 24px;
     display: flex;
     text-align: center;
@@ -175,7 +179,7 @@
 }
 
 .userList:first-child {
-    border-bottom: 1px solid #D3DEDE;
+    border-bottom: 1px solid var(--boder--color);
 }
 
 .userItem {
