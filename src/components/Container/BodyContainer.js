@@ -154,7 +154,6 @@ function BodyContainer(data, user, slug) {
                       loop
                       volume={music}
                       muted={music === 0 ? true : false}
-                      // onClick={() => playVideo(video.id)}
                     ></video>
 
                     <button className="btn-play">
@@ -255,7 +254,6 @@ function BodyContainer(data, user, slug) {
                       "../video/" + video.user_video + "/" + video.name_video
                     }
                     loop
-                    // onClick={(e) => playVideo(e, video.id)}
                   ></video>
 
                   <button
@@ -265,10 +263,7 @@ function BodyContainer(data, user, slug) {
                     <i className="fas fa-play"></i>
                   </button>
 
-                  <button
-                    className="btn-volume"
-                    // onClick={() => volVideo(video.id)}
-                  >
+                  <button className="btn-volume">
                     <i className="fas fa-volume-mute"></i>
                   </button>
                   <div className="display-vol">
@@ -278,8 +273,6 @@ function BodyContainer(data, user, slug) {
                       type="range"
                       min="0"
                       max="100"
-                      // value={vol}
-                      // onInput={() => valueVol(video.id)}
                     />
                   </div>
                 </div>
