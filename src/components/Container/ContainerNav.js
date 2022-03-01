@@ -15,7 +15,7 @@ function Container() {
 
   useEffect(() => {
     async function fetch() {
-      let res = await axios.get("http://localhost:3000/user");
+      let res = await axios.get("https://data-tiktok.herokuapp.com/user");
       let data = res && res.data ? res.data : [];
       setAccount(data);
       setLoading(true);
