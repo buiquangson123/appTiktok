@@ -1,14 +1,12 @@
 import "./ContainerNav.scss";
 import { useState, useEffect } from "react";
 
-function BodyContainer(data, user, slug) {
+function BodyContainer(data, user, slug, volumn) {
   const [loading, setLoading] = useState(false);
   let [vol, setVol] = useState(0);
   const [music, setMusic] = useState(0);
 
-  localStorage.getItem("vol") > 0
-    ? setVol(localStorage.getItem("vol"))
-    : setVol(0);
+  let userName = user ? user.name : null;
 
   function playVideo(e, id) {
     const videoId = e.target.closest(".video");
@@ -29,7 +27,7 @@ function BodyContainer(data, user, slug) {
     setMusic(e.target.value / 100);
   }
 
-  useEffect(() => {
+  function volInputVideo(vol) {
     localStorage.setItem("vol", vol);
     const listVideo = document.querySelectorAll(".video-main");
     const slider = document.querySelectorAll("#myinput");
@@ -46,9 +44,13 @@ function BodyContainer(data, user, slug) {
         ((vol - min) / (max - min)) * 100
       }%, #7a7979 ${((vol - min) / (max - min)) * 100}%, #7a7979 100%)`;
     }
-  }, [vol]);
+  }
 
   useEffect(() => {
+    volInputVideo(vol);
+  }, [vol]);
+
+  function displayMusic(music) {
     const btnVolList = document.querySelectorAll(".video .btn-volume i");
     if (music === 0) {
       for (let btnItem of btnVolList) {
@@ -61,7 +63,16 @@ function BodyContainer(data, user, slug) {
         btnItem.classList.remove("fa-volume-mute");
       }
     }
+  }
+
+  useEffect(() => {
+    displayMusic(music);
   }, [music]);
+
+  useEffect(() => {
+    volInputVideo(volumn);
+    displayMusic(volumn / 100);
+  }, [userName]);
 
   // onclick btn vol
   function volVideo(e, id) {
@@ -186,19 +197,19 @@ function BodyContainer(data, user, slug) {
                         <button className="btn-like active">
                           <i className="fas fa-heart"></i>
                         </button>
-                        <p>{video.love}k</p>
+                        <p>{shortNumber(video.love)}</p>
                       </div>
                       <div className="item-comment">
                         <button className="btn-cmt">
                           <i className="fas fa-comment-dots"></i>
                         </button>
-                        <p>{video.comment}k</p>
+                        <p>{shortNumber(video.comment)}k</p>
                       </div>
                       <div className="item-share">
                         <button className="btn-share">
                           <i className="fas fa-share"></i>
                         </button>
-                        <p>1</p>
+                        <p>{shortNumber(video.share)}</p>
                       </div>
                     </div>
                   </div>
@@ -254,6 +265,8 @@ function BodyContainer(data, user, slug) {
                       "../video/" + video.user_video + "/" + video.name_video
                     }
                     loop
+                    volume={music}
+                    muted={music === 0 ? true : false}
                   ></video>
 
                   <button
@@ -263,7 +276,10 @@ function BodyContainer(data, user, slug) {
                     <i className="fas fa-play"></i>
                   </button>
 
-                  <button className="btn-volume">
+                  <button
+                    className="btn-volume"
+                    onClick={(e) => volVideo(e, video.id)}
+                  >
                     <i className="fas fa-volume-mute"></i>
                   </button>
                   <div className="display-vol">
@@ -273,6 +289,8 @@ function BodyContainer(data, user, slug) {
                       type="range"
                       min="0"
                       max="100"
+                      value={vol}
+                      onInput={(e) => valueVol(e)}
                     />
                   </div>
                 </div>

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 function BodyProposed({ data }) {
   let { slug } = useParams();
+  let volumn = localStorage.getItem("vol");
   let user = {};
   if (data && data.length > 0) {
     let userID = data.find((item) => item.name === slug);
@@ -10,7 +11,7 @@ function BodyProposed({ data }) {
     user.avatar = userID.avatar;
     user.title = userID.title;
   }
-  return BodyContainer(data, user, slug);
+  return BodyContainer(data, user, slug, volumn);
 }
 
 export default BodyProposed;

@@ -1,10 +1,8 @@
 /* eslint-disable array-callback-return */
-import "./ContainerNav.scss";
 import BodyFollowed from "./BodyFollowed.js";
 import BodyMain from "./BodyMain.js";
 import BodyProposed from "./BodyProposed";
 import { useRef, useEffect, useState } from "react";
-import axios from "axios";
 
 import { Routes, Route, Link } from "react-router-dom";
 
@@ -14,13 +12,20 @@ function Container() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function fetch() {
-      let res = await axios.get("https://data-tiktok.herokuapp.com/user");
-      let data = res && res.data ? res.data : [];
-      setAccount(data);
-      setLoading(true);
-    }
-    fetch();
+    const getData = async () => {
+      let res = await fetch("http://localhost:3003/user");
+      let data = await res.json();
+      console.log(">>>data: ", data);
+      return data;
+    };
+    getData()
+      .then((data) => {
+        if (data.length > 0) {
+          setAccount(data);
+          setLoading(true);
+        }
+      })
+      .catch((error) => console.log(">>>>check error: ", error));
   }, []);
 
   return (

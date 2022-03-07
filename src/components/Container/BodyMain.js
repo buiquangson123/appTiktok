@@ -3,7 +3,7 @@ import BodyContainer from "./BodyContainer";
 function BodyMain({ data }) {
   let dataNew = [];
   let count = 0;
-
+  let volumn = localStorage.getItem("vol");
   if (data && data.length > 0) {
     for (let item in data) {
       for (let itemVideo in data[item].video) {
@@ -16,7 +16,9 @@ function BodyMain({ data }) {
     }
     dataNew.sort((a, b) => a.comment - b.comment);
   }
-  return <>{data && data.length > 0 && BodyContainer(dataNew, null, null)}</>;
+  return (
+    <>{data && data.length > 0 && BodyContainer(dataNew, null, null, volumn)}</>
+  );
 }
 
 export default BodyMain;
