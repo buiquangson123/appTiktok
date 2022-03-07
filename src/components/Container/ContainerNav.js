@@ -13,7 +13,7 @@ function Container() {
 
   useEffect(() => {
     const getData = async () => {
-      let res = await fetch("http://localhost:3003/user");
+      let res = await fetch(" https://data-tiktok.herokuapp.com/user");
       let data = await res.json();
       console.log(">>>data: ", data);
       return data;
